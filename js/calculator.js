@@ -13,7 +13,6 @@ const ADDONS = {
   install:    { perSqm: true,  price: 0 },
   leveling:   { perSqm: true,  price: 1500 },
   demolition: { perSqm: true,  price: 800 },
-  substrate:  { perSqm: true,  price: 500 },
   plinth:     { perSqm: false, price: 1200 }
 };
 
@@ -38,6 +37,11 @@ function updateWhatsAppLink() {
   link.href = 'https://wa.me/77751628127?text=' + encodeURIComponent(msg);
 }
 
+function isAddonActive(key) {
+  const chip = document.querySelector('.calc__addon-chip[data-addon="' + key + '"]');
+  return chip ? chip.classList.contains('active') : false;
+}
+
 function calculate() {
   const price = PRICES[selectedType];
   if (!price) return;
@@ -49,13 +53,12 @@ function calculate() {
   const matEl = document.getElementById('calcMaterialPrice');
   if (matEl) matEl.textContent = 'от\u00a0' + formatPrice(materialCost) + '\u00a0тг';
 
-  const addons = document.querySelectorAll('.calc__checkbox[data-addon]');
-  addons.forEach(function(cb) {
-    const key = cb.getAttribute('data-addon');
+  const addonKeys = ['install', 'leveling', 'demolition', 'plinth'];
+  addonKeys.forEach(function(key) {
     const row = document.getElementById('calcAddonRow_' + key);
     const priceEl = document.getElementById('calcAddonCost_' + key);
 
-    if (cb.checked) {
+    if (isAddonActive(key)) {
       let cost = 0;
       if (key === 'install') {
         cost = area * price.install;
@@ -73,19 +76,12 @@ function calculate() {
     }
   });
 
-  // Update install unit price display
-  const installUnitEl = document.querySelector('[data-addon-price="install"]');
-  if (installUnitEl) {
-    installUnitEl.textContent = formatPrice(price.install) + '\u00a0тг/м\u00b2';
-  }
-
   const totalEl = document.getElementById('calcTotal');
   if (totalEl) totalEl.textContent = 'от\u00a0' + formatPrice(total) + '\u00a0тг';
 
   lastCalcTotal = total;
   updateWhatsAppLink();
 
-  // Update area display
   const areaDisplay = document.getElementById('calcAreaDisplay');
   if (areaDisplay) areaDisplay.textContent = area + '\u00a0м\u00b2';
 }
@@ -102,6 +98,31 @@ function selectCalcType(type) {
   });
 
   calculate();
+}
+
+/* ===== Prefill main form from calculator data ===== */
+function prefillMainForm() {
+  const interest = document.getElementById('formInterest');
+  const comment = document.getElementById('formComment');
+
+  if (interest) {
+    const options = interest.options;
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].value === selectedType) {
+        interest.selectedIndex = i;
+        break;
+      }
+    }
+  }
+
+  const typeNames = {
+    laminate: 'ламинат', linoleum: 'линолеум', vinyl: 'винил LVT',
+    spc: 'кварцвинил SPC', parquet: 'паркетная доска', panels: 'настенные панели'
+  };
+
+  if (comment) {
+    comment.value = 'Расчёт с сайта: ' + (typeNames[selectedType] || selectedType) + ', ' + currentArea + ' м², от ' + formatPrice(lastCalcTotal) + ' тг';
+  }
 }
 
 /* ===== INIT ===== */
@@ -129,7 +150,6 @@ document.addEventListener('DOMContentLoaded', function() {
         p.classList.toggle('active', p === btn);
       });
 
-      // Sync slider
       const slider = document.getElementById('calcSlider');
       if (slider) slider.value = area;
 
@@ -143,7 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
     slider.addEventListener('input', function() {
       currentArea = parseInt(slider.value, 10);
 
-      // Deselect presets if not matching
       document.querySelectorAll('.calc__preset').forEach(function(p) {
         p.classList.toggle('active', parseInt(p.getAttribute('data-area'), 10) === currentArea);
       });
@@ -152,99 +171,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Addons
-  document.querySelectorAll('.calc__checkbox').forEach(function(cb) {
-    cb.addEventListener('change', calculate);
-  });
+  // Addon chip-toggle — v11
+  const addonsContainer = document.getElementById('calcAddons');
+  if (addonsContainer) {
+    addonsContainer.addEventListener('click', function(e) {
+      const chip = e.target.closest('.calc__addon-chip');
+      if (!chip) return;
+      chip.classList.toggle('active');
+      calculate();
+    });
+  }
 
-  // Calculator mini-form
-  const calcForm = document.getElementById('calcForm');
-  if (calcForm) {
-    calcForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const phone = document.getElementById('calcPhone');
-      const cleaned = phone.value.replace(/\D/g, '');
-
-      if (cleaned.length < 10 || cleaned.length > 12) {
-        phone.classList.add('error');
-        return;
-      }
-      phone.classList.remove('error');
-
-      const typeNames = {
-        laminate: 'Ламинат', linoleum: 'Линолеум', vinyl: 'Винил LVT',
-        spc: 'Кварцвинил SPC', parquet: 'Паркетная доска', panels: 'Настенные панели'
-      };
-
-      // Collect checked addons
-      const checkedAddons = [];
-      document.querySelectorAll('.calc__checkbox[data-addon]:checked').forEach(function(cb) {
-        const textEl = cb.closest('.calc__addon-row').querySelector('.calc__addon-text');
-        if (textEl) checkedAddons.push(textEl.textContent);
-      });
-
-      const btn = calcForm.querySelector('button[type="submit"]');
-      const originalText = btn.textContent;
-      btn.textContent = 'Отправка...';
-      btn.disabled = true;
-
-      // Send to Telegram (placeholder)
-      const BOT_TOKEN = 'YOUR_BOT_TOKEN';
-      const CHAT_ID = 'YOUR_CHAT_ID';
-      const text = [
-        '<b>Заявка из калькулятора</b>',
-        'Тип: ' + (typeNames[selectedType] || selectedType),
-        'Площадь: ' + currentArea + ' м²',
-        'Допуслуги: ' + (checkedAddons.length ? checkedAddons.join(', ') : 'нет'),
-        'Итого: от ' + formatPrice(lastCalcTotal) + ' тг',
-        'Телефон: ' + phone.value
-      ].join('\n');
-
-      fetch('https://api.telegram.org/bot' + BOT_TOKEN + '/sendMessage', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: 'HTML' })
-      }).finally(function() {
-        btn.textContent = 'Заявка отправлена!';
-        btn.style.background = 'var(--color-success)';
-        setTimeout(function() {
-          btn.textContent = originalText;
-          btn.style.background = '';
-          btn.disabled = false;
-          phone.value = '';
-        }, 3000);
-
-        // Also prefill main form
-        prefillMainForm();
-      });
+  // CTA button — scroll to form + prefill
+  const calcCtaBtn = document.getElementById('calcCtaBtn');
+  if (calcCtaBtn) {
+    calcCtaBtn.addEventListener('click', function() {
+      prefillMainForm();
     });
   }
 
   // Initial calculation
   calculate();
 });
-
-/* ===== Prefill main form from calculator data ===== */
-function prefillMainForm() {
-  const interest = document.getElementById('formInterest');
-  const comment = document.getElementById('formComment');
-
-  if (interest) {
-    const options = interest.options;
-    for (let i = 0; i < options.length; i++) {
-      if (options[i].value === selectedType) {
-        interest.selectedIndex = i;
-        break;
-      }
-    }
-  }
-
-  const typeNames = {
-    laminate: 'ламинат', linoleum: 'линолеум', vinyl: 'винил LVT',
-    spc: 'кварцвинил SPC', parquet: 'паркетная доска', panels: 'настенные панели'
-  };
-
-  if (comment) {
-    comment.value = 'Расчёт с сайта: ' + (typeNames[selectedType] || selectedType) + ', ' + currentArea + ' м², от ' + formatPrice(lastCalcTotal) + ' тг';
-  }
-}

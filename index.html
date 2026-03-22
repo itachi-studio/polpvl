@@ -73,7 +73,7 @@
 </head>
 <body>
 
-  <!-- HEADER — Glassmorphism, v9: убрана кнопка Заявка, КК вместо КА -->
+  <!-- HEADER — v10: no CTA button, QK lang -->
   <header class="header" id="header">
     <div class="container header__inner">
       <a href="#" class="header__logo" aria-label="PolPVL — На главную">
@@ -96,7 +96,7 @@
 
         <div class="lang-switcher" role="radiogroup" aria-label="Выбор языка">
           <button class="lang-switcher__btn active" data-lang="ru" role="radio" aria-checked="true">РУ</button>
-          <button class="lang-switcher__btn" data-lang="kk" role="radio" aria-checked="false">ҚК</button>
+          <button class="lang-switcher__btn" data-lang="kk" role="radio" aria-checked="false">QAZ</button>
         </div>
 
         <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
@@ -109,55 +109,49 @@
         </button>
       </div>
     </div>
-
-    <!-- Mobile menu -->
-    <div class="mobile-menu" id="mobileMenu">
-      <nav class="mobile-menu__nav">
-        <a href="#catalog" class="mobile-menu__link" data-i18n="nav_catalog">Каталог</a>
-        <a href="#calculator" class="mobile-menu__link" data-i18n="nav_calculator">Калькулятор</a>
-        <a href="#portfolio" class="mobile-menu__link" data-i18n="nav_portfolio">Портфолио</a>
-        <a href="#reviews" class="mobile-menu__link" data-i18n="nav_reviews">Отзывы</a>
-        <a href="#faq" class="mobile-menu__link" data-i18n="nav_faq">FAQ</a>
-      </nav>
-    </div>
   </header>
 
+  <!-- Mobile menu backdrop -->
+  <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
+
+  <!-- Mobile menu — v10: slide-in -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Навигация">
+    <nav class="mobile-menu__nav">
+      <a href="#catalog" class="mobile-menu__link" data-i18n="nav_catalog">Каталог</a>
+      <a href="#calculator" class="mobile-menu__link" data-i18n="nav_calculator">Калькулятор</a>
+      <a href="#portfolio" class="mobile-menu__link" data-i18n="nav_portfolio">Портфолио</a>
+      <a href="#reviews" class="mobile-menu__link" data-i18n="nav_reviews">Отзывы</a>
+      <a href="#faq" class="mobile-menu__link" data-i18n="nav_faq">FAQ</a>
+    </nav>
+  </div>
+
   <main>
-    <!-- HERO — Asymmetric, v9: new stats, new subtitle -->
+    <!-- HERO — v12: img as separate element, solid bg, 2-col desktop -->
     <section class="hero" id="hero">
-      <div class="hero__bg-diagonal"></div>
       <div class="container hero__inner">
+        <div class="hero__image-wrap">
+          <img src="img/hero-herringbone.jpg" alt="Паркет ёлочкой — укладка полов в Павлодаре" class="hero__image" width="800" height="600" loading="eager">
+        </div>
         <div class="hero__content">
           <h1 data-i18n="hero_h1">Полы под ключ в&nbsp;Павлодаре</h1>
           <p class="hero__subtitle" data-i18n="hero_subtitle">Привезём образцы к&nbsp;вам домой. Замерим, подберём, уложим&nbsp;— с&nbsp;гарантией.</p>
-          <form class="hero__form" id="heroForm" novalidate>
-            <div class="hero__form-row">
-              <input type="tel" id="heroPhone" placeholder="+7 (___) ___-__-__" class="hero__form-input" required aria-label="Телефон">
-              <button type="submit" class="btn btn--primary hero__form-btn" data-i18n="hero_cta">Оставить заявку</button>
-            </div>
+
+          <div class="hero__cta-wrap">
+            <a href="#contact-form" class="btn btn--primary" data-i18n="hero_cta">Оставить заявку</a>
             <p class="hero__form-note" data-i18n="hero_form_note">Перезвоним за&nbsp;30&nbsp;минут</p>
-          </form>
+          </div>
+
           <div class="hero__stats">
             <div class="hero__stat scroll-appear"><span class="hero__stat-number" data-i18n="stat1_num">7&nbsp;лет</span><span class="hero__stat-label" data-i18n="stat1_label">опыта в&nbsp;укладке</span></div>
-            <div class="hero__stat-divider"></div>
             <div class="hero__stat scroll-appear"><span class="hero__stat-number" data-i18n="stat2_num">200+</span><span class="hero__stat-label" data-i18n="stat2_label">выполненных объектов</span></div>
-            <div class="hero__stat-divider"></div>
             <div class="hero__stat scroll-appear"><span class="hero__stat-number" data-i18n="stat3_num">6&nbsp;видов</span><span class="hero__stat-label" data-i18n="stat3_label">покрытий в&nbsp;наличии</span></div>
-            <div class="hero__stat-divider"></div>
             <div class="hero__stat scroll-appear"><span class="hero__stat-number" data-i18n="stat4_num">до&nbsp;3&nbsp;лет</span><span class="hero__stat-label" data-i18n="stat4_label">гарантии на&nbsp;работу</span></div>
           </div>
         </div>
-        <div class="hero__visual">
-          <div class="hero__photo">
-            <img src="img/hero.jpg" alt="Современная комната с деревянным полом" class="hero__photo-img" width="1200" height="900" loading="eager">
-            <div class="hero__photo-overlay"></div>
-          </div>
-        </div>
       </div>
-      <div class="hero__clip"></div>
     </section>
 
-    <!-- CATALOG — v9: equal-height cards -->
+    <!-- CATALOG -->
     <section class="section section--surface-low catalog" id="catalog">
       <div class="container">
         <h2 class="section__title" data-i18n="cat_title">Что мы&nbsp;укладываем</h2>
@@ -232,7 +226,7 @@
       </div>
     </section>
 
-    <!-- CALCULATOR — v9: rubber grid, no manual input, mini-form, WhatsApp -->
+    <!-- CALCULATOR — v10: compact, no phone input -->
     <section class="section section--surface calculator" id="calculator">
       <div class="container">
         <h2 class="section__title" data-i18n="calc_title">Рассчитайте стоимость</h2>
@@ -243,85 +237,63 @@
               <label class="calc__label" data-i18n="calc_type_label">Тип покрытия</label>
               <div class="calc__chips" id="calcChips" role="group">
                 <button class="calc__chip active" data-value="laminate" type="button" aria-pressed="true">
-                  <svg class="calc__chip-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="12" y1="3" x2="12" y2="9"/><line x1="8" y1="9" x2="8" y2="15"/><line x1="16" y1="9" x2="16" y2="15"/><line x1="12" y1="15" x2="12" y2="21"/></svg>
+                  <svg class="calc__chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="12" y1="3" x2="12" y2="9"/><line x1="8" y1="9" x2="8" y2="15"/><line x1="16" y1="9" x2="16" y2="15"/><line x1="12" y1="15" x2="12" y2="21"/></svg>
                   <span data-i18n="calc_opt_laminate">Ламинат</span>
                 </button>
                 <button class="calc__chip" data-value="linoleum" type="button" aria-pressed="false">
-                  <svg class="calc__chip-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                  <svg class="calc__chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
                   <span data-i18n="calc_opt_linoleum">Линолеум</span>
                 </button>
                 <button class="calc__chip" data-value="vinyl" type="button" aria-pressed="false">
-                  <svg class="calc__chip-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                  <svg class="calc__chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
                   <span data-i18n="calc_opt_vinyl">Винил LVT</span>
                 </button>
                 <button class="calc__chip" data-value="spc" type="button" aria-pressed="false">
-                  <svg class="calc__chip-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18"/><path d="M12 3v18"/></svg>
+                  <svg class="calc__chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18"/><path d="M12 3v18"/></svg>
                   <span data-i18n="calc_opt_spc">SPC</span>
                 </button>
                 <button class="calc__chip" data-value="parquet" type="button" aria-pressed="false">
-                  <svg class="calc__chip-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg>
+                  <svg class="calc__chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg>
                   <span data-i18n="calc_opt_parquet">Паркет</span>
                 </button>
                 <button class="calc__chip" data-value="panels" type="button" aria-pressed="false">
-                  <svg class="calc__chip-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="9" y1="3" x2="9" y2="12"/><line x1="15" y1="12" x2="15" y2="21"/></svg>
+                  <svg class="calc__chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="9" y1="3" x2="9" y2="12"/><line x1="15" y1="12" x2="15" y2="21"/></svg>
                   <span data-i18n="calc_opt_panels">Панели</span>
                 </button>
               </div>
             </div>
 
-            <!-- Area selection — presets + slider only, no manual input -->
+            <!-- Area selection — v10: 3 presets + slider -->
             <div class="calc__section">
               <label class="calc__label"><span data-i18n="calc_area_label">Площадь помещения</span> <span class="calc__area-display" id="calcAreaDisplay">20&nbsp;м²</span></label>
               <div class="calc__presets" id="calcPresets">
-                <button class="calc__preset" data-area="10" type="button">10&nbsp;м²</button>
-                <button class="calc__preset" data-area="15" type="button">15&nbsp;м²</button>
                 <button class="calc__preset active" data-area="20" type="button">20&nbsp;м²</button>
-                <button class="calc__preset" data-area="30" type="button">30&nbsp;м²</button>
                 <button class="calc__preset" data-area="40" type="button">40&nbsp;м²</button>
                 <button class="calc__preset" data-area="60" type="button">60&nbsp;м²</button>
               </div>
               <input type="range" id="calcSlider" min="5" max="200" value="20" class="calc__slider" aria-label="Площадь">
             </div>
 
-            <!-- Addons — v9: whole row clickable, hover highlight -->
+            <!-- Addons — v11: 2×2 chip-toggle, no prices -->
             <div class="calc__section">
               <label class="calc__label" data-i18n="calc_addons_label">Дополнительные услуги</label>
-              <div class="calc__addons">
-                <label class="calc__addon-row">
-                  <input type="checkbox" class="calc__checkbox" data-addon="install" checked>
-                  <span class="calc__checkbox-visual"></span>
-                  <svg class="calc__addon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              <div class="calc__addons" id="calcAddons">
+                <button type="button" class="calc__addon-chip active" data-addon="install">
+                  <svg class="calc__addon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
                   <span class="calc__addon-text" data-i18n="calc_addon_install">Укладка</span>
-                  <span class="calc__addon-price" data-addon-price="install"></span>
-                </label>
-                <label class="calc__addon-row">
-                  <input type="checkbox" class="calc__checkbox" data-addon="leveling">
-                  <span class="calc__checkbox-visual"></span>
-                  <svg class="calc__addon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 6H3"/><path d="M10 12H3"/><path d="M10 18H3"/><path d="M18 9v6"/><path d="M15 12h6"/></svg>
+                </button>
+                <button type="button" class="calc__addon-chip" data-addon="leveling">
+                  <svg class="calc__addon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 6H3"/><path d="M10 12H3"/><path d="M10 18H3"/><path d="M18 9v6"/><path d="M15 12h6"/></svg>
                   <span class="calc__addon-text" data-i18n="calc_addon_leveling">Выравнивание пола</span>
-                  <span class="calc__addon-price" data-addon-price="leveling" data-i18n="calc_addon_leveling_price">от&nbsp;1&nbsp;500&nbsp;тг/м²</span>
-                </label>
-                <label class="calc__addon-row">
-                  <input type="checkbox" class="calc__checkbox" data-addon="demolition">
-                  <span class="calc__checkbox-visual"></span>
-                  <svg class="calc__addon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.12 7.88c1.14 1.12 1.88 2.6 1.88 4.12 0 3.31-2.69 6-6 6H6l3-3H6l3-3H6l3-3"/><path d="M2 2l20 20"/></svg>
-                  <span class="calc__addon-text" data-i18n="calc_addon_demolition">Демонтаж старого покрытия</span>
-                  <span class="calc__addon-price" data-addon-price="demolition" data-i18n="calc_addon_demolition_price">от&nbsp;800&nbsp;тг/м²</span>
-                </label>
-                <label class="calc__addon-row">
-                  <input type="checkbox" class="calc__checkbox" data-addon="substrate">
-                  <span class="calc__checkbox-visual"></span>
-                  <svg class="calc__addon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="5" rx="1"/><rect x="2" y="10" width="20" height="5" rx="1"/><rect x="2" y="16" width="20" height="5" rx="1"/></svg>
-                  <span class="calc__addon-text" data-i18n="calc_addon_substrate">Подложка</span>
-                  <span class="calc__addon-price" data-addon-price="substrate" data-i18n="calc_addon_substrate_price">от&nbsp;500&nbsp;тг/м²</span>
-                </label>
-                <label class="calc__addon-row">
-                  <input type="checkbox" class="calc__checkbox" data-addon="plinth">
-                  <span class="calc__checkbox-visual"></span>
-                  <svg class="calc__addon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 21L21 21"/><path d="M3 17h18"/></svg>
+                </button>
+                <button type="button" class="calc__addon-chip" data-addon="demolition">
+                  <svg class="calc__addon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.12 7.88c1.14 1.12 1.88 2.6 1.88 4.12 0 3.31-2.69 6-6 6H6l3-3H6l3-3H6l3-3"/><path d="M2 2l20 20"/></svg>
+                  <span class="calc__addon-text" data-i18n="calc_addon_demolition">Демонтаж</span>
+                </button>
+                <button type="button" class="calc__addon-chip" data-addon="plinth">
+                  <svg class="calc__addon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 21L21 21"/><path d="M3 17h18"/></svg>
                   <span class="calc__addon-text" data-i18n="calc_addon_plinth">Плинтус</span>
-                  <span class="calc__addon-price" data-addon-price="plinth" data-i18n="calc_addon_plinth_price">от&nbsp;1&nbsp;200&nbsp;тг/пог.м</span>
-                </label>
+                </button>
               </div>
             </div>
           </div>
@@ -344,10 +316,6 @@
               <span data-i18n="calc_result_demolition">Демонтаж:</span>
               <span id="calcAddonCost_demolition"></span>
             </div>
-            <div class="calc__result-row" id="calcAddonRow_substrate" style="display:none">
-              <span data-i18n="calc_result_substrate">Подложка:</span>
-              <span id="calcAddonCost_substrate"></span>
-            </div>
             <div class="calc__result-row" id="calcAddonRow_plinth" style="display:none">
               <span data-i18n="calc_result_plinth">Плинтус:</span>
               <span id="calcAddonCost_plinth"></span>
@@ -358,24 +326,20 @@
               <span id="calcTotal">от&nbsp;100&nbsp;000&nbsp;тг</span>
             </div>
 
-            <!-- Mini-form inside result -->
-            <div class="calc__mini-form">
-              <form class="calc__mini-form-inner" id="calcForm" novalidate>
-                <input type="tel" id="calcPhone" placeholder="+7 (___) ___-__-__" class="calc__mini-input" required aria-label="Телефон">
-                <button type="submit" class="btn btn--primary calc__mini-btn" data-i18n="calc_cta">Получить точный расчёт</button>
-              </form>
-              <a href="#" id="calcWhatsApp" class="btn btn--whatsapp calc__wa-btn" target="_blank" rel="noopener">
+            <!-- v10: CTA buttons without phone input -->
+            <div class="calc__cta-buttons">
+              <a href="#contact-form" class="btn btn--primary" id="calcCtaBtn" data-i18n="calc_cta">Получить точный расчёт</a>
+              <a href="#" id="calcWhatsApp" class="btn btn--whatsapp" target="_blank" rel="noopener">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 <span data-i18n="calc_whatsapp">Написать в&nbsp;WhatsApp</span>
               </a>
-              <p class="calc__mini-note" data-i18n="hero_form_note">Перезвоним за&nbsp;30&nbsp;минут</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- GUARANTEE — v9: Павел основатель + команда -->
+    <!-- GUARANTEE — v10: centered -->
     <section class="section guarantee" id="guarantee">
       <div class="container guarantee__inner">
         <div class="guarantee__photo scroll-appear">
@@ -393,144 +357,64 @@
       </div>
     </section>
 
-    <!-- HOW IT WORKS — v9: compact, SVG icons, max-width 800px -->
+    <!-- HOW IT WORKS — v12: variant B, 4 steps -->
     <section class="section section--surface-low steps" id="steps">
       <div class="container">
         <h2 class="section__title" data-i18n="steps_title">Как заказать</h2>
         <div class="steps__timeline">
           <div class="steps__item scroll-appear">
             <div class="steps__circle">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M26 21v4a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4"/><path d="M20 5h7v7"/><path d="M27 5l-11 11"/></svg>
             </div>
             <div class="steps__line"></div>
-            <h3 data-i18n="step1_title">Заявка</h3>
-            <p data-i18n="step1_text">Напишите в&nbsp;WhatsApp или оставьте заявку на&nbsp;сайте.</p>
+            <h3 data-i18n="step1_title">Звоните</h3>
+            <p data-i18n="step1_text">Оставьте заявку&nbsp;— перезвоним за&nbsp;30&nbsp;минут</p>
           </div>
           <div class="steps__item scroll-appear">
             <div class="steps__circle">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M6 8l-4 4 4 4"/><path d="M18 8l4 4-4 4"/></svg>
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16h24"/><path d="M8 12l-4 4 4 4"/><path d="M24 12l4 4-4 4"/><path d="M16 8v16"/></svg>
             </div>
             <div class="steps__line"></div>
-            <h3 data-i18n="step2_title">Замер</h3>
-            <p data-i18n="step2_text">Приедем, замерим помещение и&nbsp;привезём образцы.</p>
+            <h3 data-i18n="step2_title">Замеряем</h3>
+            <p data-i18n="step2_text">Бесплатный выезд с&nbsp;образцами покрытий</p>
           </div>
           <div class="steps__item scroll-appear">
             <div class="steps__circle">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="20" height="24" rx="2"/><path d="M10 10h12"/><path d="M10 15h8"/><path d="M10 20h10"/></svg>
             </div>
             <div class="steps__line"></div>
-            <h3 data-i18n="step3_title">Расчёт</h3>
-            <p data-i18n="step3_text">Посчитаем точную стоимость. Цена фиксируется.</p>
+            <h3 data-i18n="step3_title">Считаем</h3>
+            <p data-i18n="step3_text">Точная цена, фиксированная в&nbsp;договоре</p>
           </div>
           <div class="steps__item scroll-appear">
             <div class="steps__circle">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 15l-7 7c-.8.8-2.1.8-2.9 0l-.1-.1a2.05 2.05 0 0 1 0-2.9L16 12"/><path d="M21 17l4-4"/><path d="M24 14l-1.2-1.2c-.6-.6-.9-1.4-.9-2.2V8.5a.5.5 0 0 0-.5-.5h-2.1c-.8 0-1.6-.3-2.2-.9L16 6"/><path d="M6 26h20"/></svg>
             </div>
-            <div class="steps__line"></div>
-            <h3 data-i18n="step4_title">Доставка</h3>
-            <p data-i18n="step4_text">Привезём покрытие и&nbsp;всё необходимое.</p>
-          </div>
-          <div class="steps__item scroll-appear">
-            <div class="steps__circle">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 12l-8.5 8.5c-.83.83-2.17.83-3 0 0 0 0 0 0 0a2.12 2.12 0 0 1 0-3L12 9"/><path d="M17.64 15L22 10.64"/><path d="m20.91 11.7-1.25-1.25c-.6-.6-.93-1.4-.93-2.25V6.5a.5.5 0 0 0-.5-.5H16.5c-.85 0-1.65-.33-2.25-.93l-1.25-1.25"/></svg>
-            </div>
-            <h3 data-i18n="step5_title">Укладка</h3>
-            <p data-i18n="step5_text">Смонтируем, уберём за&nbsp;собой, дадим гарантию.</p>
+            <h3 data-i18n="step4_title">Делаем</h3>
+            <p data-i18n="step4_text">Доставка, укладка, гарантия до&nbsp;3&nbsp;лет</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PORTFOLIO — v9: 12 cards with ЖК names -->
+    <!-- PORTFOLIO -->
     <section class="section section--surface portfolio" id="portfolio">
       <div class="container">
         <h2 class="section__title" data-i18n="port_title">Работы в&nbsp;Павлодаре</h2>
         <p class="section__subtitle" data-i18n="port_subtitle">Больше фото и&nbsp;видео&nbsp;— в&nbsp;Instagram @pol_pvl</p>
         <div class="portfolio__grid">
-          <div class="portfolio__card scroll-appear">
-            <img src="img/portfolio-1.jpg" alt="ЖК Сарыарка — ламинат 45 м²" class="portfolio__img" loading="lazy" width="400" height="300">
-            <div class="portfolio__overlay">
-              <span class="portfolio__name" data-i18n="port_jk1">ЖК&nbsp;«Сарыарка»</span>
-              <span class="portfolio__meta" data-i18n="port_jk1_meta">Ламинат, 45&nbsp;м²</span>
-            </div>
-          </div>
-          <div class="portfolio__card scroll-appear">
-            <img src="img/portfolio-2.jpg" alt="ЖК Достык — кварцвинил SPC 38 м²" class="portfolio__img" loading="lazy" width="400" height="300">
-            <div class="portfolio__overlay">
-              <span class="portfolio__name" data-i18n="port_jk2">ЖК&nbsp;«Достык»</span>
-              <span class="portfolio__meta" data-i18n="port_jk2_meta">Кварцвинил SPC, 38&nbsp;м²</span>
-            </div>
-          </div>
-          <div class="portfolio__card scroll-appear">
-            <img src="img/portfolio-3.jpg" alt="ЖК Нұрлы жер — виниловый пол 52 м²" class="portfolio__img" loading="lazy" width="400" height="300">
-            <div class="portfolio__overlay">
-              <span class="portfolio__name" data-i18n="port_jk3">ЖК&nbsp;«Нұрлы&nbsp;жер»</span>
-              <span class="portfolio__meta" data-i18n="port_jk3_meta">Виниловый пол LVT, 52&nbsp;м²</span>
-            </div>
-          </div>
-          <div class="portfolio__card scroll-appear">
-            <img src="img/portfolio-4.jpg" alt="ЖК Жас Канат — линолеум 64 м²" class="portfolio__img" loading="lazy" width="400" height="300">
-            <div class="portfolio__overlay">
-              <span class="portfolio__name" data-i18n="port_jk4">ЖК&nbsp;«Жас&nbsp;Канат»</span>
-              <span class="portfolio__meta" data-i18n="port_jk4_meta">Линолеум, 64&nbsp;м²</span>
-            </div>
-          </div>
-          <div class="portfolio__card scroll-appear">
-            <img src="img/portfolio-1.jpg" alt="ЖК Жастар — паркетная доска 28 м²" class="portfolio__img" loading="lazy" width="400" height="300">
-            <div class="portfolio__overlay">
-              <span class="portfolio__name" data-i18n="port_jk5">ЖК&nbsp;«Жастар»</span>
-              <span class="portfolio__meta" data-i18n="port_jk5_meta">Паркетная доска, 28&nbsp;м²</span>
-            </div>
-          </div>
-          <div class="portfolio__card scroll-appear">
-            <img src="img/portfolio-2.jpg" alt="ЖК Астана — ламинат 73 м²" class="portfolio__img" loading="lazy" width="400" height="300">
-            <div class="portfolio__overlay">
-              <span class="portfolio__name" data-i18n="port_jk6">ЖК&nbsp;«Астана»</span>
-              <span class="portfolio__meta" data-i18n="port_jk6_meta">Ламинат, 73&nbsp;м²</span>
-            </div>
-          </div>
-          <div class="portfolio__card scroll-appear">
-            <img src="img/portfolio-3.jpg" alt="Дом в пос. Кенжеколь — кварцвинил SPC 120 м²" class="portfolio__img" loading="lazy" width="400" height="300">
-            <div class="portfolio__overlay">
-              <span class="portfolio__name" data-i18n="port_jk7">Дом в&nbsp;пос.&nbsp;Кенжеколь</span>
-              <span class="portfolio__meta" data-i18n="port_jk7_meta">Кварцвинил SPC, 120&nbsp;м²</span>
-            </div>
-          </div>
-          <div class="portfolio__card scroll-appear">
-            <img src="img/portfolio-4.jpg" alt="ЖК Иртыш — настенные панели 32 м²" class="portfolio__img" loading="lazy" width="400" height="300">
-            <div class="portfolio__overlay">
-              <span class="portfolio__name" data-i18n="port_jk8">ЖК&nbsp;«Иртыш»</span>
-              <span class="portfolio__meta" data-i18n="port_jk8_meta">Настенные панели, 32&nbsp;м²</span>
-            </div>
-          </div>
-          <div class="portfolio__card scroll-appear">
-            <img src="img/portfolio-1.jpg" alt="ЖК Алтын Орда — ламинат 56 м²" class="portfolio__img" loading="lazy" width="400" height="300">
-            <div class="portfolio__overlay">
-              <span class="portfolio__name" data-i18n="port_jk9">ЖК&nbsp;«Алтын&nbsp;Орда»</span>
-              <span class="portfolio__meta" data-i18n="port_jk9_meta">Ламинат, 56&nbsp;м²</span>
-            </div>
-          </div>
-          <div class="portfolio__card scroll-appear">
-            <img src="img/portfolio-2.jpg" alt="Дом в пос. Павлодарское — линолеум 95 м²" class="portfolio__img" loading="lazy" width="400" height="300">
-            <div class="portfolio__overlay">
-              <span class="portfolio__name" data-i18n="port_jk10">Дом в&nbsp;пос.&nbsp;Павлодарское</span>
-              <span class="portfolio__meta" data-i18n="port_jk10_meta">Линолеум, 95&nbsp;м²</span>
-            </div>
-          </div>
-          <div class="portfolio__card scroll-appear">
-            <img src="img/portfolio-3.jpg" alt="ЖК Тұлпар — виниловый пол LVT 41 м²" class="portfolio__img" loading="lazy" width="400" height="300">
-            <div class="portfolio__overlay">
-              <span class="portfolio__name" data-i18n="port_jk11">ЖК&nbsp;«Тұлпар»</span>
-              <span class="portfolio__meta" data-i18n="port_jk11_meta">Виниловый пол LVT, 41&nbsp;м²</span>
-            </div>
-          </div>
-          <div class="portfolio__card scroll-appear">
-            <img src="img/portfolio-4.jpg" alt="ЖК Байтерек — кварцвинил SPC 48 м²" class="portfolio__img" loading="lazy" width="400" height="300">
-            <div class="portfolio__overlay">
-              <span class="portfolio__name" data-i18n="port_jk12">ЖК&nbsp;«Байтерек»</span>
-              <span class="portfolio__meta" data-i18n="port_jk12_meta">Кварцвинил SPC, 48&nbsp;м²</span>
-            </div>
-          </div>
+          <div class="portfolio__card scroll-appear"><img src="img/portfolio-1.jpg" alt="ЖК Сарыарка — ламинат 45 м²" class="portfolio__img" loading="lazy" width="400" height="300"><div class="portfolio__overlay"><span class="portfolio__name" data-i18n="port_jk1">ЖК&nbsp;«Сарыарка»</span><span class="portfolio__meta" data-i18n="port_jk1_meta">Ламинат, 45&nbsp;м²</span></div></div>
+          <div class="portfolio__card scroll-appear"><img src="img/portfolio-2.jpg" alt="ЖК Достык — кварцвинил SPC 38 м²" class="portfolio__img" loading="lazy" width="400" height="300"><div class="portfolio__overlay"><span class="portfolio__name" data-i18n="port_jk2">ЖК&nbsp;«Достык»</span><span class="portfolio__meta" data-i18n="port_jk2_meta">Кварцвинил SPC, 38&nbsp;м²</span></div></div>
+          <div class="portfolio__card scroll-appear"><img src="img/portfolio-3.jpg" alt="ЖК Нұрлы жер — виниловый пол 52 м²" class="portfolio__img" loading="lazy" width="400" height="300"><div class="portfolio__overlay"><span class="portfolio__name" data-i18n="port_jk3">ЖК&nbsp;«Нұрлы&nbsp;жер»</span><span class="portfolio__meta" data-i18n="port_jk3_meta">Виниловый пол LVT, 52&nbsp;м²</span></div></div>
+          <div class="portfolio__card scroll-appear"><img src="img/portfolio-4.jpg" alt="ЖК Жас Канат — линолеум 64 м²" class="portfolio__img" loading="lazy" width="400" height="300"><div class="portfolio__overlay"><span class="portfolio__name" data-i18n="port_jk4">ЖК&nbsp;«Жас&nbsp;Канат»</span><span class="portfolio__meta" data-i18n="port_jk4_meta">Линолеум, 64&nbsp;м²</span></div></div>
+          <div class="portfolio__card scroll-appear"><img src="img/portfolio-1.jpg" alt="ЖК Жастар — паркетная доска 28 м²" class="portfolio__img" loading="lazy" width="400" height="300"><div class="portfolio__overlay"><span class="portfolio__name" data-i18n="port_jk5">ЖК&nbsp;«Жастар»</span><span class="portfolio__meta" data-i18n="port_jk5_meta">Паркетная доска, 28&nbsp;м²</span></div></div>
+          <div class="portfolio__card scroll-appear"><img src="img/portfolio-2.jpg" alt="ЖК Астана — ламинат 73 м²" class="portfolio__img" loading="lazy" width="400" height="300"><div class="portfolio__overlay"><span class="portfolio__name" data-i18n="port_jk6">ЖК&nbsp;«Астана»</span><span class="portfolio__meta" data-i18n="port_jk6_meta">Ламинат, 73&nbsp;м²</span></div></div>
+          <div class="portfolio__card scroll-appear"><img src="img/portfolio-3.jpg" alt="Дом в пос. Кенжеколь — кварцвинил SPC 120 м²" class="portfolio__img" loading="lazy" width="400" height="300"><div class="portfolio__overlay"><span class="portfolio__name" data-i18n="port_jk7">Дом в&nbsp;пос.&nbsp;Кенжеколь</span><span class="portfolio__meta" data-i18n="port_jk7_meta">Кварцвинил SPC, 120&nbsp;м²</span></div></div>
+          <div class="portfolio__card scroll-appear"><img src="img/portfolio-4.jpg" alt="ЖК Иртыш — настенные панели 32 м²" class="portfolio__img" loading="lazy" width="400" height="300"><div class="portfolio__overlay"><span class="portfolio__name" data-i18n="port_jk8">ЖК&nbsp;«Иртыш»</span><span class="portfolio__meta" data-i18n="port_jk8_meta">Настенные панели, 32&nbsp;м²</span></div></div>
+          <div class="portfolio__card scroll-appear"><img src="img/portfolio-1.jpg" alt="ЖК Алтын Орда — ламинат 56 м²" class="portfolio__img" loading="lazy" width="400" height="300"><div class="portfolio__overlay"><span class="portfolio__name" data-i18n="port_jk9">ЖК&nbsp;«Алтын&nbsp;Орда»</span><span class="portfolio__meta" data-i18n="port_jk9_meta">Ламинат, 56&nbsp;м²</span></div></div>
+          <div class="portfolio__card scroll-appear"><img src="img/portfolio-2.jpg" alt="Дом в пос. Павлодарское — линолеум 95 м²" class="portfolio__img" loading="lazy" width="400" height="300"><div class="portfolio__overlay"><span class="portfolio__name" data-i18n="port_jk10">Дом в&nbsp;пос.&nbsp;Павлодарское</span><span class="portfolio__meta" data-i18n="port_jk10_meta">Линолеум, 95&nbsp;м²</span></div></div>
+          <div class="portfolio__card scroll-appear"><img src="img/portfolio-3.jpg" alt="ЖК Тұлпар — виниловый пол LVT 41 м²" class="portfolio__img" loading="lazy" width="400" height="300"><div class="portfolio__overlay"><span class="portfolio__name" data-i18n="port_jk11">ЖК&nbsp;«Тұлпар»</span><span class="portfolio__meta" data-i18n="port_jk11_meta">Виниловый пол LVT, 41&nbsp;м²</span></div></div>
+          <div class="portfolio__card scroll-appear"><img src="img/portfolio-4.jpg" alt="ЖК Байтерек — кварцвинил SPC 48 м²" class="portfolio__img" loading="lazy" width="400" height="300"><div class="portfolio__overlay"><span class="portfolio__name" data-i18n="port_jk12">ЖК&nbsp;«Байтерек»</span><span class="portfolio__meta" data-i18n="port_jk12_meta">Кварцвинил SPC, 48&nbsp;м²</span></div></div>
         </div>
         <div class="portfolio__cta-wrap">
           <a href="https://instagram.com/pol_pvl" class="btn btn--secondary" target="_blank" rel="noopener" data-i18n="port_cta">Все работы в&nbsp;Instagram</a>
@@ -538,7 +422,7 @@
       </div>
     </section>
 
-    <!-- REVIEWS — v9: avatars via DiceBear -->
+    <!-- REVIEWS -->
     <section class="section reviews" id="reviews">
       <div class="container">
         <h2 class="section__title" data-i18n="rev_title">Отзывы клиентов</h2>
@@ -585,46 +469,16 @@
       <div class="container">
         <h2 class="section__title" data-i18n="faq_title">Частые вопросы</h2>
         <div class="faq__list">
-          <div class="faq__item">
-            <button class="faq__question" aria-expanded="false"><span data-i18n="faq1_q">Сколько стоит укладка ламината в&nbsp;Павлодаре?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-            <div class="faq__answer" aria-hidden="true"><p data-i18n="faq1_a">От&nbsp;1&nbsp;500&nbsp;тг/м². Комната 20&nbsp;м²&nbsp;— от&nbsp;30&nbsp;000&nbsp;тг за&nbsp;работу. Материал отдельно&nbsp;— от&nbsp;3&nbsp;500&nbsp;тг/м². Точную цену скажем после замера.</p></div>
-          </div>
-          <div class="faq__item">
-            <button class="faq__question" aria-expanded="false"><span data-i18n="faq2_q">Какое покрытие выбрать для квартиры?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-            <div class="faq__answer" aria-hidden="true"><p data-i18n="faq2_a">Ламинат&nbsp;— универсальный вариант (от&nbsp;3&nbsp;500&nbsp;тг/м²). SPC-винил&nbsp;— для кухни и&nbsp;ванной, не&nbsp;боится воды (от&nbsp;5&nbsp;000&nbsp;тг/м²). Линолеум&nbsp;— самый бюджетный (от&nbsp;2&nbsp;000&nbsp;тг/м²). Приедем с&nbsp;образцами&nbsp;— выберем вместе.</p></div>
-          </div>
-          <div class="faq__item">
-            <button class="faq__question" aria-expanded="false"><span data-i18n="faq3_q">Замер правда бесплатный?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-            <div class="faq__answer" aria-hidden="true"><p data-i18n="faq3_a">Да. Приедем в&nbsp;удобное время, замерим площадь, привезём образцы, посчитаем стоимость. Если не&nbsp;подойдёт&nbsp;— ничего не&nbsp;должны.</p></div>
-          </div>
-          <div class="faq__item">
-            <button class="faq__question" aria-expanded="false"><span data-i18n="faq4_q">Сколько времени занимает укладка?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-            <div class="faq__answer" aria-hidden="true"><p data-i18n="faq4_a">Комната 15-20&nbsp;м²&nbsp;— один день. Квартира целиком&nbsp;— 2-3&nbsp;дня. Зависит от&nbsp;покрытия и&nbsp;состояния основания.</p></div>
-          </div>
-          <div class="faq__item">
-            <button class="faq__question" aria-expanded="false"><span data-i18n="faq5_q">Чем SPC-пол лучше ламината?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-            <div class="faq__answer" aria-hidden="true"><p data-i18n="faq5_a">SPC полностью водостойкий&nbsp;— можно ставить на&nbsp;кухню, в&nbsp;ванную, на&nbsp;балкон. Тише, теплее на&nbsp;ощупь. Дороже ламината (от&nbsp;5&nbsp;000 vs 3&nbsp;500&nbsp;тг/м²), но&nbsp;служит дольше.</p></div>
-          </div>
-          <div class="faq__item">
-            <button class="faq__question" aria-expanded="false"><span data-i18n="faq6_q">Какая гарантия на&nbsp;укладку?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-            <div class="faq__answer" aria-hidden="true"><p data-i18n="faq6_a">Даём гарантию на&nbsp;работу до&nbsp;3&nbsp;лет. Если что-то случится из-за укладки&nbsp;— приедем и&nbsp;исправим бесплатно.</p></div>
-          </div>
-          <div class="faq__item">
-            <button class="faq__question" aria-expanded="false"><span data-i18n="faq7_q">Можно заказать только материал?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-            <div class="faq__answer" aria-hidden="true"><p data-i18n="faq7_a">Да, доставим по&nbsp;Павлодару. Но&nbsp;с&nbsp;укладкой покрытие прослужит дольше и&nbsp;сохранит гарантию производителя.</p></div>
-          </div>
-          <div class="faq__item">
-            <button class="faq__question" aria-expanded="false"><span data-i18n="faq8_q">Работаете за&nbsp;пределами Павлодара?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-            <div class="faq__answer" aria-hidden="true"><p data-i18n="faq8_a">Да, по&nbsp;всей области. Условия выезда обсудим по&nbsp;телефону.</p></div>
-          </div>
-          <div class="faq__item">
-            <button class="faq__question" aria-expanded="false"><span data-i18n="faq9_q">Нужно&nbsp;ли готовить пол перед укладкой?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-            <div class="faq__answer" aria-hidden="true"><p data-i18n="faq9_a">Зависит от&nbsp;основания. Оценим при замере. Ровный пол&nbsp;— кладём сразу. Неровный&nbsp;— выровняем, это отдельная услуга (от&nbsp;1&nbsp;500&nbsp;тг/м²). Всё посчитаем заранее.</p></div>
-          </div>
-          <div class="faq__item">
-            <button class="faq__question" aria-expanded="false"><span data-i18n="faq10_q">Как с&nbsp;вами связаться?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-            <div class="faq__answer" aria-hidden="true"><p data-i18n="faq10_a">WhatsApp или звонок: +7&nbsp;(775)&nbsp;162-81-27. Или заявка на&nbsp;сайте&nbsp;— перезвоним за&nbsp;30&nbsp;минут. Instagram: @pol_pvl. Пн-Сб, 9:00-18:00.</p></div>
-          </div>
+          <div class="faq__item"><button class="faq__question" aria-expanded="false"><span data-i18n="faq1_q">Сколько стоит укладка ламината в&nbsp;Павлодаре?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq__answer" aria-hidden="true"><p data-i18n="faq1_a">От&nbsp;1&nbsp;500&nbsp;тг/м². Комната 20&nbsp;м²&nbsp;— от&nbsp;30&nbsp;000&nbsp;тг за&nbsp;работу. Материал отдельно&nbsp;— от&nbsp;3&nbsp;500&nbsp;тг/м². Точную цену скажем после замера.</p></div></div>
+          <div class="faq__item"><button class="faq__question" aria-expanded="false"><span data-i18n="faq2_q">Какое покрытие выбрать для квартиры?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq__answer" aria-hidden="true"><p data-i18n="faq2_a">Ламинат&nbsp;— универсальный вариант (от&nbsp;3&nbsp;500&nbsp;тг/м²). SPC-винил&nbsp;— для кухни и&nbsp;ванной, не&nbsp;боится воды (от&nbsp;5&nbsp;000&nbsp;тг/м²). Линолеум&nbsp;— самый бюджетный (от&nbsp;2&nbsp;000&nbsp;тг/м²). Приедем с&nbsp;образцами&nbsp;— выберем вместе.</p></div></div>
+          <div class="faq__item"><button class="faq__question" aria-expanded="false"><span data-i18n="faq3_q">Замер правда бесплатный?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq__answer" aria-hidden="true"><p data-i18n="faq3_a">Да. Приедем в&nbsp;удобное время, замерим площадь, привезём образцы, посчитаем стоимость. Если не&nbsp;подойдёт&nbsp;— ничего не&nbsp;должны.</p></div></div>
+          <div class="faq__item"><button class="faq__question" aria-expanded="false"><span data-i18n="faq4_q">Сколько времени занимает укладка?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq__answer" aria-hidden="true"><p data-i18n="faq4_a">Комната 15-20&nbsp;м²&nbsp;— один день. Квартира целиком&nbsp;— 2-3&nbsp;дня. Зависит от&nbsp;покрытия и&nbsp;состояния основания.</p></div></div>
+          <div class="faq__item"><button class="faq__question" aria-expanded="false"><span data-i18n="faq5_q">Чем SPC-пол лучше ламината?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq__answer" aria-hidden="true"><p data-i18n="faq5_a">SPC полностью водостойкий&nbsp;— можно ставить на&nbsp;кухню, в&nbsp;ванную, на&nbsp;балкон. Тише, теплее на&nbsp;ощупь. Дороже ламината (от&nbsp;5&nbsp;000 vs 3&nbsp;500&nbsp;тг/м²), но&nbsp;служит дольше.</p></div></div>
+          <div class="faq__item"><button class="faq__question" aria-expanded="false"><span data-i18n="faq6_q">Какая гарантия на&nbsp;укладку?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq__answer" aria-hidden="true"><p data-i18n="faq6_a">Даём гарантию на&nbsp;работу до&nbsp;3&nbsp;лет. Если что-то случится из-за укладки&nbsp;— приедем и&nbsp;исправим бесплатно.</p></div></div>
+          <div class="faq__item"><button class="faq__question" aria-expanded="false"><span data-i18n="faq7_q">Можно заказать только материал?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq__answer" aria-hidden="true"><p data-i18n="faq7_a">Да, доставим по&nbsp;Павлодару. Но&nbsp;с&nbsp;укладкой покрытие прослужит дольше и&nbsp;сохранит гарантию производителя.</p></div></div>
+          <div class="faq__item"><button class="faq__question" aria-expanded="false"><span data-i18n="faq8_q">Работаете за&nbsp;пределами Павлодара?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq__answer" aria-hidden="true"><p data-i18n="faq8_a">Да, по&nbsp;всей области. Условия выезда обсудим по&nbsp;телефону.</p></div></div>
+          <div class="faq__item"><button class="faq__question" aria-expanded="false"><span data-i18n="faq9_q">Нужно&nbsp;ли готовить пол перед укладкой?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq__answer" aria-hidden="true"><p data-i18n="faq9_a">Зависит от&nbsp;основания. Оценим при замере. Ровный пол&nbsp;— кладём сразу. Неровный&nbsp;— выровняем, это отдельная услуга (от&nbsp;1&nbsp;500&nbsp;тг/м²). Всё посчитаем заранее.</p></div></div>
+          <div class="faq__item"><button class="faq__question" aria-expanded="false"><span data-i18n="faq10_q">Как с&nbsp;вами связаться?</span><svg class="faq__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq__answer" aria-hidden="true"><p data-i18n="faq10_a">WhatsApp или звонок: +7&nbsp;(775)&nbsp;162-81-27. Или заявка на&nbsp;сайте&nbsp;— перезвоним за&nbsp;30&nbsp;минут. Instagram: @pol_pvl. Пн-Сб, 9:00-18:00.</p></div></div>
         </div>
       </div>
     </section>
@@ -675,36 +529,18 @@
     </section>
   </main>
 
-  <!-- FOOTER — v9: contacts merged into footer -->
+  <!-- FOOTER -->
   <footer class="footer" id="footer">
     <div class="container footer__grid">
       <div class="footer__col footer__contacts">
         <h3 data-i18n="footer_contacts_title">Контакты</h3>
         <ul class="footer__list">
-          <li>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <a href="tel:+77751628127">+7 (775) 162-81-27</a>
-          </li>
-          <li>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            <a href="https://wa.me/77751628127" target="_blank" rel="noopener">WhatsApp</a>
-          </li>
-          <li>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            <a href="https://instagram.com/pol_pvl" target="_blank" rel="noopener">@pol_pvl</a>
-          </li>
-          <li>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span data-i18n="footer_address">г.&nbsp;Павлодар, ул.&nbsp;Естая,&nbsp;83</span>
-          </li>
-          <li>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span data-i18n="footer_hours">Пн-Сб 9:00-18:00</span>
-          </li>
-          <li>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            <span data-i18n="footer_zone">Павлодар и&nbsp;Павлодарская область</span>
-          </li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+77751628127">+7 (775) 162-81-27</a></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><a href="https://wa.me/77751628127" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/pol_pvl" target="_blank" rel="noopener">@pol_pvl</a></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="footer_address">г.&nbsp;Павлодар, ул.&nbsp;Естая,&nbsp;83</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span data-i18n="footer_hours">Пн-Сб 9:00-18:00</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span data-i18n="footer_zone">Павлодар и&nbsp;Павлодарская область</span></li>
         </ul>
       </div>
       <div class="footer__col footer__nav">
